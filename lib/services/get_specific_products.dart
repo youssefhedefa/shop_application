@@ -11,13 +11,22 @@ class SpecificProducts {
     http.Response response = await http.get(
         Uri.parse('https://fakestoreapi.com/products/category/$categoryName'));
 
-    List<dynamic> responseData = jsonDecode(response.body);
+    if(response.statusCode == 200)
+    {
+      List<dynamic> responseData = jsonDecode(response.body);
 
-    for (int i = 0; i < responseData.length; i++) {
-      specificProductsList.add(
-        ProductModel.fromJson(responseData[i]),
-      );
+      for (int i = 0; i < responseData.length; i++) {
+        specificProductsList.add(
+          ProductModel.fromJson(responseData[i]),
+        );
+      }
+      return specificProductsList;
     }
-    return specificProductsList;
+    else
+    {
+      throw Exception('status code is ${response.statusCode}');
+
+    }
+
   }
 }
