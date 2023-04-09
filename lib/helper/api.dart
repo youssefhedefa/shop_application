@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
@@ -11,6 +12,30 @@ class Api {
       return jsonDecode(response.body);
     } else {
       throw Exception('status code is ${response.statusCode}');
+    }
+  }
+
+  Future<dynamic> post(
+      {required String url,
+      @required dynamic body,
+      @required String? token}) async {
+    Map<String, String> headers = {};
+
+    if (token != null) {
+      headers.addAll({
+        'Authorization': 'Bearer $token',
+      });
+    }
+
+    http.Response response =
+        await http.post(Uri.parse(url), body: body, headers: headers);
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> responseData = jsonDecode(response.body);
+
+      return responseData;
+    } else {
+      throw ('there is problem in ${response.statusCode}\n with body ${jsonDecode(response.body)}');
     }
   }
 }
