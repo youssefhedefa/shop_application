@@ -8,7 +8,7 @@ class SpecificProducts {
     List<ProductModel> specificProductsList = [];
 
     List<dynamic> responseData = await Api()
-        .get(url: 'https://fakestoreapi.com/products/category/$categoryName');
+        .get(url: 'https://fakestoreapi.com/products/category/$categoryName',token: null);
 
     for (int i = 0; i < responseData.length; i++) {
       specificProductsList.add(

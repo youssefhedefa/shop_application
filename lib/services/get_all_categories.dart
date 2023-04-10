@@ -3,7 +3,7 @@ import 'package:shop_application/helper/api.dart';
 class AllCategories {
   Future<List<dynamic>> getAllCategories() async {
 
-      List<dynamic> categoriesData = await Api().get(url: 'https://fakestoreapi.com/products/categories');
+      List<dynamic> categoriesData = await Api().get(url: 'https://fakestoreapi.com/products/categories', token: null);
       return categoriesData;
 
   }
