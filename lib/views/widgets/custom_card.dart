@@ -9,7 +9,7 @@ class CustomCard extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         Container(
-          height: 150,
+          height: 130,
           width: 210,
           decoration: BoxDecoration(
             boxShadow: [
@@ -58,11 +58,11 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 78,
-          bottom: 80,
+          left: 68,
+          bottom: 140,
           child: Image.network(
             'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-            height: 120,
+            height: 100,
             width: 120,
           ),
         ),

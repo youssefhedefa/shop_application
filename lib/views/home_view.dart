@@ -9,10 +9,21 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: CustomAppBar(),
-      body: Center(
-        child: CustomCard(),
+    return  Scaffold(
+      appBar:const CustomAppBar(),
+      body: Padding(
+        padding:const EdgeInsetsDirectional.only(top: 65,start: 16,end: 16,),
+        child: GridView.builder(
+          physics:const BouncingScrollPhysics(),
+          clipBehavior: Clip.none,
+            gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 18,
+              mainAxisExtent: 200,
+            ),
+            itemBuilder:(context,index)=> const CustomCard(),
+          itemCount: 20,
+        ),
       ),
     );
   }
