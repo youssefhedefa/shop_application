@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_application/models/product_model.dart';
 import 'package:shop_application/services/get_all_product.dart';
+import 'package:shop_application/views/update_product_view.dart';
 
 import 'custom_card.dart';
 
@@ -22,7 +23,12 @@ class CustomFutureListBuilder extends StatelessWidget {
               crossAxisSpacing: 18,
               mainAxisExtent: 200,
             ),
-            itemBuilder: (context, index) => CustomCard(product:products[index],),
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: ()
+              {
+                Navigator.pushNamed(context, UpdateProductView.id);
+              },
+                child: CustomCard(product:products[index],),),
             itemCount: products.length,
           );
         } else {
