@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shop_application/models/product_model.dart';
 
-class CustomCard extends StatelessWidget {
-  const CustomCard({Key? key}) : super(key: key);
+class CustomCard extends StatefulWidget {
+  const CustomCard({Key? key, required this.product}) : super(key: key);
+  final ProductModel product;
 
+  @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -29,9 +36,11 @@ class CustomCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Product name',
-                    style: TextStyle(
+                  Text(
+                    widget.product.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style:const TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
                     ),
@@ -40,7 +49,7 @@ class CustomCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        r'$product price',
+                        r'$''${widget.product.price}',
                         style: TextStyle(
                           color: Colors.black.withOpacity(0.75),
                           fontSize: 16,
@@ -58,12 +67,13 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 68,
-          bottom: 140,
+          left: 50,
+          bottom: 150,
           child: Image.network(
-            'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+            widget.product.image,
+            //'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
             height: 100,
-            width: 120,
+            width: 100,
           ),
         ),
       ],
